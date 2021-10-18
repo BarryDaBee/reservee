@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:reservee_app/ui/views/all_restaurants_view.dart';
+import 'package:reservee_app/ui/views/base_view.dart';
 import 'package:reservee_app/ui/views/change_password_view.dart';
 import 'package:reservee_app/ui/views/home_view.dart';
 import 'package:reservee_app/ui/views/login_view.dart';
@@ -13,6 +15,13 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case CHANGE_PASSWORD_VIEW:
       return MaterialPageRoute(
           builder: (BuildContext context) => const ChangePasswordView());
+    case BASE_VIEW:
+      return MaterialPageRoute(
+          builder: (BuildContext context) => const BaseView());
+    case ALL_RESTAURANTS_VIEW:
+      return MaterialPageRoute(
+          settings: settings,
+          builder: (BuildContext context) => const AllRestaurantsView());
     case LOGIN_VIEW:
       return MaterialPageRoute(
           builder: (BuildContext context) => const LoginView());

@@ -37,6 +37,7 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   flutter_svg: ^0.23.0+1
   get_it: ^7.2.0
+  persistent_bottom_nav_bar: ^4.0.2
 
 dev_dependencies:
   flutter_test:
@@ -78,10 +79,13 @@ flutter:
     - family: Gilroy
       fonts:
         - asset: assets/fonts/Gilroy-Regular.ttf
+          weight: 400
         - asset: assets/fonts/Gilroy-Bold.ttf
           weight: 700
         - asset: assets/fonts/Gilroy-Light.ttf
           weight: 300
+        - asset: assets/fonts/Gilroy-Medium.ttf
+          weight: 500
         - asset: assets/fonts/Gilroy-SemiBold.ttf
           weight: 600
         - asset: assets/fonts/Gilroy-Black.ttf

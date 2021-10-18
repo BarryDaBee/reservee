@@ -6,7 +6,10 @@ import 'package:reservee_app/ui/widgets/custom_switch.dart';
 import 'package:reservee_app/ui/widgets/custom_textfield_with_label.dart';
 import 'package:reservee_app/ui/widgets/custom_password_field_with_label.dart';
 import 'package:reservee_app/ui/widgets/facebook_button.dart';
+import 'package:reservee_app/core/route_names.dart';
 import 'package:reservee_app/ui/widgets/google_button.dart';
+
+import '../../core/route_names.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -82,7 +85,7 @@ class LoginView extends StatelessWidget {
               CustomElevatedButton(
                 text: 'Login',
                 onPressed: () {
-                  Navigator.pushNamed(context, HOME_VIEW);
+                  Navigator.pushNamed(context, BASE_VIEW);
                 },
               ),
               SizedBox(height: 24.h),

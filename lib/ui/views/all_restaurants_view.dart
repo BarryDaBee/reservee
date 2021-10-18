@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:reservee_app/core/exports.dart';
 import 'package:reservee_app/ui/widgets/all_restaurants_card.dart';
-import 'package:reservee_app/ui/widgets/popular_restaurant_card.dart';
+import 'package:reservee_app/core/exports.dart';
+import 'package:flutter/cupertino.dart';
 
-class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+class AllRestaurantsView extends StatelessWidget {
+  const AllRestaurantsView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var arguments = ModalRoute.of(context)?.settings.arguments as Map;
+
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -96,103 +98,125 @@ class HomeView extends StatelessWidget {
             SizedBox(height: 24.h),
             Row(
               children: [
-                const CustomText(
-                  'Popular',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                  color: AppColors.black,
+                SvgPicture.asset('categories'.svg),
+                SizedBox(width: 18.w),
+                const CustomDropdown(
+                  items: ['Ratings'],
                 ),
-                const Spacer(),
-                InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, ALL_RESTAURANTS_VIEW,
-                          arguments: {"title": "Popular"});
-                    },
-                    child: SvgPicture.asset('right_arrow'.svg)),
-              ],
-            ),
-            SizedBox(height: 10.h),
-            SizedBox(
-              height: 210.h,
-              child: ListView.separated(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) =>
-                    PopularRestaurantCard(),
-                separatorBuilder: (BuildContext context, int index) =>
-                    SizedBox(width: 16.w),
-              ),
-            ),
-            SizedBox(height: 15.h),
-            Row(
-              children: [
-                const CustomText(
-                  'Close to You',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                  color: AppColors.black,
+                SizedBox(width: 16.w),
+                const CustomDropdown(
+                  items: [
+                    'Price',
+                    'Price1',
+                    'Price2',
+                    'Price3',
+                  ],
                 ),
-                const Spacer(),
-                InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, ALL_RESTAURANTS_VIEW,
-                          arguments: {"title": "Close to you"});
-                    },
-                    child: SvgPicture.asset('right_arrow'.svg)),
-              ],
-            ),
-            SizedBox(height: 10.h),
-            SizedBox(
-              height: 210.h,
-              child: ListView.separated(
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                physics: const BouncingScrollPhysics(),
-                itemCount: 5,
-                itemBuilder: (BuildContext context, int index) =>
-                    PopularRestaurantCard(),
-                separatorBuilder: (BuildContext context, int index) =>
-                    SizedBox(width: 16.w),
-              ),
-            ),
-            SizedBox(height: 15.h),
-            Row(
-              children: [
-                const CustomText(
-                  'All Restaurants',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 16,
-                  color: AppColors.black,
-                ),
-                const Spacer(),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(
-                      context,
-                      ALL_RESTAURANTS_VIEW,
-                      arguments: {"title": "All Restaurants"},
-                    );
-                  },
-                  child: SvgPicture.asset('right_arrow'.svg),
+                SizedBox(width: 16.w),
+                const CustomDropdown(
+                  items: [
+                    'Time',
+                    'Time1',
+                    'Time2',
+                    'Time3',
+                  ],
                 ),
               ],
             ),
+            SizedBox(height: 24.h),
+            CustomText(
+              arguments['title'] ?? 'All Restaurants',
+              fontWeight: FontWeight.w600,
+              fontSize: 16,
+              color: AppColors.black,
+            ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                AllRestaurantsCard(),
-                SizedBox(width: 15.w),
                 Column(
                   children: [
-                    SizedBox(height: 34.h),
+                    AllRestaurantsCard(),
+                    SizedBox(height: 16.h),
+                    AllRestaurantsCard(),
+                    SizedBox(height: 16.h),
+                    AllRestaurantsCard(),
+                    SizedBox(height: 16.h),
+                    AllRestaurantsCard(),
+                  ],
+                ),
+                Column(
+                  children: [
+                    SizedBox(height: 36.h),
+                    AllRestaurantsCard(),
+                    SizedBox(height: 16.h),
+                    AllRestaurantsCard(),
+                    SizedBox(height: 16.h),
+                    AllRestaurantsCard(),
+                    SizedBox(height: 16.h),
                     AllRestaurantsCard(),
                   ],
                 ),
               ],
             ),
-            SizedBox(height: 20.h),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class CustomDropdown extends StatefulWidget {
+  const CustomDropdown({
+    Key? key,
+    required this.items,
+  }) : super(key: key);
+  final List<String> items;
+  @override
+  State<CustomDropdown> createState() => _CustomDropdownState();
+}
+
+class _CustomDropdownState extends State<CustomDropdown> {
+  String dropdownValue = '';
+  @override
+  void initState() {
+    dropdownValue = widget.items[0];
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 30.h,
+      child: IntrinsicWidth(
+        child: Container(
+          padding: const EdgeInsets.all(5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(width: 0.5, color: Colors.black),
+          ),
+          child: DropdownButtonHideUnderline(
+            child: DropdownButton<String>(
+              value: dropdownValue,
+              icon: const Icon(
+                CupertinoIcons.chevron_down,
+                size: 15,
+              ),
+              items: widget.items.map((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: CustomText(
+                    value,
+                    fontSize: 14,
+                  ),
+                );
+              }).toList(),
+              onChanged: (_) {
+                setState(() {
+                  dropdownValue = _!;
+                });
+              },
+            ),
+          ),
         ),
       ),
     );

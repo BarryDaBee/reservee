@@ -5,3 +5,5 @@ const String HOME_VIEW = 'home';
 const String SIGN_UP_VIEW = 'signUp';
 const String RESET_PASSWORD_VIEW = 'resetPassword';
 const String ONBOARDING_VIEW = 'onboarding';
+const String ALL_RESTAURANTS_VIEW = 'allRestaurants';
+const String BASE_VIEW = 'base_view';

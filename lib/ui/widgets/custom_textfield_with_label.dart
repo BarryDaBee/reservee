@@ -27,7 +27,7 @@ class CustomTextFieldWithLabel extends StatelessWidget {
               fontSize: 14,
               color: AppColors.darkBlue,
               fontFamily: 'Gilroy',
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w500,
             ),
             textAlignVertical: TextAlignVertical.center,
             textAlign: TextAlign.start,
