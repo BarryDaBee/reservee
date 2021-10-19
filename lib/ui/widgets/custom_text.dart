@@ -8,13 +8,15 @@ class CustomText extends StatelessWidget {
   final FontWeight? fontWeight;
   final TextAlign? textAlign;
   final TextOverflow? overflow;
+  final int? maxLines;
   const CustomText(this.text,
       {Key? key,
       this.fontSize,
       this.color,
       this.fontWeight,
       this.textAlign,
-      this.overflow})
+      this.overflow,
+      this.maxLines})
       : assert(text != null, 'Property text of custom text cannot be null'),
         super(key: key);
   @override
@@ -23,6 +25,7 @@ class CustomText extends StatelessWidget {
       text!,
       textAlign: textAlign,
       overflow: overflow,
+      maxLines: maxLines,
       style: TextStyle(
         fontSize: fontSize?.sp,
         color: color ?? AppColors.darkBlue,

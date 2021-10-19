@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:reservee_app/core/exports.dart';
+import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
+import 'package:reservee_app/ui/views/restaurant_info_view.dart';
 
 class AllRestaurantsCard extends StatefulWidget {
   const AllRestaurantsCard({Key? key}) : super(key: key);
@@ -18,7 +20,12 @@ class _AllRestaurantsCardState extends State<AllRestaurantsCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // Navigator.pushNamed(context, ALL_RESTAURANTS_VIEW);
+        pushNewScreen(
+          context,
+          screen: const RestaurantInfoView(),
+          withNavBar: false,
+          pageTransitionAnimation: PageTransitionAnimation.cupertino,
+        );
       },
       child: SizedBox(
         height: 162.h,

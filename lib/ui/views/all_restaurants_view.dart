@@ -14,6 +14,7 @@ class AllRestaurantsView extends StatelessWidget {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
         child: ListView(
+          shrinkWrap: true,
           children: [
             SizedBox(height: 30.h),
             Row(
@@ -135,25 +136,25 @@ class AllRestaurantsView extends StatelessWidget {
               children: [
                 Column(
                   children: [
-                    AllRestaurantsCard(),
+                    const AllRestaurantsCard(),
                     SizedBox(height: 16.h),
-                    AllRestaurantsCard(),
+                    const AllRestaurantsCard(),
                     SizedBox(height: 16.h),
-                    AllRestaurantsCard(),
+                    const AllRestaurantsCard(),
                     SizedBox(height: 16.h),
-                    AllRestaurantsCard(),
+                    const AllRestaurantsCard(),
                   ],
                 ),
                 Column(
                   children: [
                     SizedBox(height: 36.h),
-                    AllRestaurantsCard(),
+                    const AllRestaurantsCard(),
                     SizedBox(height: 16.h),
-                    AllRestaurantsCard(),
+                    const AllRestaurantsCard(),
                     SizedBox(height: 16.h),
-                    AllRestaurantsCard(),
+                    const AllRestaurantsCard(),
                     SizedBox(height: 16.h),
-                    AllRestaurantsCard(),
+                    const AllRestaurantsCard(),
                   ],
                 ),
               ],

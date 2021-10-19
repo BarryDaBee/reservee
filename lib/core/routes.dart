@@ -6,6 +6,7 @@ import 'package:reservee_app/ui/views/home_view.dart';
 import 'package:reservee_app/ui/views/login_view.dart';
 import 'package:reservee_app/ui/views/onboarding_view.dart';
 import 'package:reservee_app/ui/views/reset_password_view.dart';
+import 'package:reservee_app/ui/views/restaurant_info_view.dart';
 import 'package:reservee_app/ui/views/sign_up_view.dart';
 import 'package:reservee_app/ui/views/splash_view.dart';
 import 'route_names.dart';
@@ -25,6 +26,9 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case LOGIN_VIEW:
       return MaterialPageRoute(
           builder: (BuildContext context) => const LoginView());
+    case RESTAURANT_INFO_VIEW:
+      return MaterialPageRoute(
+          builder: (BuildContext context) => const RestaurantInfoView());
     case ONBOARDING_VIEW:
       return MaterialPageRoute(
           builder: (BuildContext context) => const OnboardingView());

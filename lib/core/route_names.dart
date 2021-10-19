@@ -7,3 +7,4 @@ const String RESET_PASSWORD_VIEW = 'resetPassword';
 const String ONBOARDING_VIEW = 'onboarding';
 const String ALL_RESTAURANTS_VIEW = 'allRestaurants';
 const String BASE_VIEW = 'base_view';
+const String RESTAURANT_INFO_VIEW = 'restaurant_info';
