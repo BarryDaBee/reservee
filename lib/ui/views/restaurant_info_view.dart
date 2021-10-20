@@ -2,6 +2,8 @@ import 'package:reservee_app/core/exports.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
+import 'package:reservee_app/ui/widgets/menu_item.dart';
+
 class RestaurantInfoView extends StatefulWidget {
   const RestaurantInfoView({Key? key}) : super(key: key);
 
@@ -11,12 +13,28 @@ class RestaurantInfoView extends StatefulWidget {
 
 class _RestaurantInfoViewState extends State<RestaurantInfoView>
     with TickerProviderStateMixin {
+  TabController? _tabController;
+  PageController? _pageController;
+  int _currentPage = 0;
   @override
-  Widget build(BuildContext context) {
-    TabController _tabController = TabController(
+  initState() {
+    _tabController = TabController(
       vsync: this,
       length: 3,
     );
+    _pageController = PageController(
+      initialPage: 0,
+    );
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -28,7 +46,7 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView>
               children: [
                 InkWell(
                   onTap: () {
-                    Navigator.pushNamed(context, RESTAURANT_INFO_VIEW);
+                    Navigator.pop(context);
                   },
                   child: const Icon(Icons.arrow_back_ios),
                 ),
@@ -45,11 +63,55 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView>
                 color: AppColors.grey,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: Image.asset(
-                    'eatee'.png,
-                    fit: BoxFit.cover,
+                  child: SizedBox(
                     width: 295.w,
                     height: 346.h,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        PageView(
+                          controller: _pageController,
+                          onPageChanged: (newPage) {
+                            setState(() {
+                              _currentPage = newPage;
+                            });
+                          },
+                          children: [
+                            Image.asset(
+                              'eatee'.png,
+                              fit: BoxFit.cover,
+                            ),
+                            Image.asset(
+                              'cuisinee'.png,
+                              fit: BoxFit.cover,
+                            ),
+                            Image.asset(
+                              'eatee_2'.png,
+                              fit: BoxFit.cover,
+                            ),
+                          ],
+                        ),
+                        Positioned(
+                          bottom: 10.h,
+                          child: Row(
+                            children: List.generate(
+                              3,
+                              (index) => Container(
+                                height: 3.h,
+                                width: 14.w,
+                                margin: EdgeInsets.only(right: 4.w),
+                                decoration: BoxDecoration(
+                                  color: _currentPage == index
+                                      ? AppColors.lightOrange
+                                      : Colors.white.withOpacity(0.6),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -117,7 +179,7 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView>
                         const CustomText(
                           '2k Reviews',
                           fontSize: 12,
-                          fontWeight: FontWeight.w500,
+                          fontWeight: FontWeight.w600,
                           color: Color(0xFF4F4F4F),
                         ),
                       ],
@@ -138,7 +200,7 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView>
                 ),
               ],
             ),
-            SizedBox(height: 25.h),
+            SizedBox(height: 15.h),
             Card(
               elevation: 0.5,
               child: TabBar(
@@ -173,10 +235,10 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView>
               height: 367.h,
               child: TabBarView(
                 controller: _tabController,
-                children: [
-                  const InfoBody(),
-                  const MenuBody(),
-                  Container(),
+                children: const [
+                  InfoBody(),
+                  MenuBody(),
+                  ReviewsBody(),
                 ],
               ),
             )
@@ -309,58 +371,6 @@ class _MenuBodyState extends State<MenuBody> {
   }
 }
 
-class MenuItem extends StatelessWidget {
-  final String imageUrl;
-  final String? itemName;
-
-  const MenuItem({Key? key, required this.imageUrl, this.itemName})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Image.asset(
-          imageUrl.png,
-          height: 76.r,
-          width: 76.r,
-        ),
-        SizedBox(width: 14.w),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CustomText(
-              itemName,
-              color: AppColors.darkBlue,
-              fontWeight: FontWeight.w600,
-              fontSize: 14,
-            ),
-            SizedBox(height: 4.h),
-            SizedBox(
-              width: 243.w,
-              child: const CustomText(
-                'This is pounded yam paired with vegetable soup. it is a royal meal taken with palm wine.',
-                color: AppColors.darkBlue,
-                overflow: TextOverflow.ellipsis,
-                fontSize: 12,
-                maxLines: 2,
-              ),
-            ),
-            SizedBox(height: 6.h),
-            const CustomText(
-              '\$300',
-              fontWeight: FontWeight.w600,
-              fontSize: 16,
-              color: AppColors.black,
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
-
 class InfoBody extends StatelessWidget {
   const InfoBody({Key? key}) : super(key: key);
   @override
@@ -369,7 +379,7 @@ class InfoBody extends StatelessWidget {
       children: [
         SizedBox(height: 24.h),
         Container(
-          // margin: EdgeInsets.all(24.h),
+          //margin: EdgeInsets.all(24.h),
           padding: EdgeInsets.all(24.h),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
@@ -439,5 +449,62 @@ class InfoBody extends StatelessWidget {
         )
       ],
     );
+  }
+}
+
+class ReviewsBody extends StatelessWidget {
+  const ReviewsBody({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+        padding: EdgeInsets.only(top: 24.h, bottom: 24.h),
+        itemBuilder: (context, index) {
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ...List.generate(
+                    5,
+                    (index) => SizedBox(
+                      height: 10.r,
+                      width: 10.r,
+                      child: SvgPicture.asset('star'.svg),
+                    ),
+                  ),
+                  const Spacer(),
+                  const CustomText('19th of Jan, 2021',
+                      fontSize: 10, color: AppColors.black)
+                ],
+              ),
+              SizedBox(height: 5.h),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Expanded(
+                    child: CustomText(
+                      'Their Customer service is top notch and they sell very nice dishes. I recommend them',
+                      fontSize: 14,
+                      color: AppColors.black,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 5.h),
+              const CustomText(
+                'by Richard',
+                fontSize: 12,
+                color: AppColors.grey,
+              ),
+            ],
+          );
+        },
+        separatorBuilder: (context, index) {
+          return SizedBox(height: 23.h);
+        },
+        itemCount: 10);
   }
 }
