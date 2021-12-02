@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 
+import 'package:flutter/material.dart';
 import 'package:reservee_app/core/exports.dart';
 
 class SplashView extends StatefulWidget {
@@ -43,7 +43,7 @@ class _SplashViewState extends State<SplashView> with TickerProviderStateMixin {
 
   void navigateToLoginView() async {
     await Future.delayed(const Duration(seconds: 1));
-    Navigator.of(context).pushNamed(ONBOARDING_VIEW);
+    Navigator.of(context).pushNamed(onboardingView);
   }
 
   @override

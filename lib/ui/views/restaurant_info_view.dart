@@ -1,7 +1,8 @@
-import 'package:reservee_app/core/exports.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:reservee_app/core/exports.dart';
 import 'package:reservee_app/ui/widgets/menu_item.dart';
 
 class RestaurantInfoView extends StatefulWidget {
@@ -26,11 +27,6 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView>
       initialPage: 0,
     );
     super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
   }
 
   @override
@@ -60,7 +56,7 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView>
               child: PhysicalModel(
                 elevation: 5,
                 borderRadius: BorderRadius.circular(20),
-                color: AppColors.grey,
+                color: AppColors.lightOrange,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
                   child: SizedBox(
@@ -89,13 +85,17 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView>
                               'eatee_2'.png,
                               fit: BoxFit.cover,
                             ),
+                            Image.asset(
+                              'eatee_2'.png,
+                              fit: BoxFit.cover,
+                            ),
                           ],
                         ),
                         Positioned(
                           bottom: 10.h,
                           child: Row(
                             children: List.generate(
-                              3,
+                              4,
                               (index) => Container(
                                 height: 3.h,
                                 width: 14.w,
@@ -190,7 +190,9 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView>
                   style: ElevatedButton.styleFrom(
                     primary: AppColors.orange,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, reserveSpaceView);
+                  },
                   child: const CustomText(
                     'Reserve',
                     fontSize: 16,
@@ -201,35 +203,35 @@ class _RestaurantInfoViewState extends State<RestaurantInfoView>
               ],
             ),
             SizedBox(height: 15.h),
-            Card(
-              elevation: 0.5,
-              child: TabBar(
-                controller: _tabController,
-                indicatorColor: AppColors.orange,
-                unselectedLabelStyle: const TextStyle(
-                  fontFamily: 'Gilroy',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                ),
-                unselectedLabelColor: const Color(0xFFE0E0E0),
-                labelStyle: const TextStyle(
-                  fontFamily: 'Gilroy',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14,
-                ),
-                labelColor: AppColors.darkBlue,
-                tabs: const [
-                  Tab(
-                    text: 'Info',
-                  ),
-                  Tab(
-                    text: 'Menu',
-                  ),
-                  Tab(
-                    text: 'Reviews',
-                  ),
-                ],
+            TabBar(
+              controller: _tabController,
+              indicatorColor: AppColors.orange,
+              unselectedLabelStyle: const TextStyle(
+                fontFamily: 'Gilroy',
+                fontWeight: FontWeight.w500,
+                fontSize: 14,
               ),
+              unselectedLabelColor: const Color(0xFFE0E0E0),
+              labelStyle: const TextStyle(
+                fontFamily: 'Gilroy',
+                fontWeight: FontWeight.w600,
+                fontSize: 14,
+              ),
+              labelColor: AppColors.darkBlue,
+              tabs: const [
+                Tab(
+                  text: 'Info',
+                ),
+                Tab(
+                  text: 'Menu',
+                ),
+                Tab(
+                  text: 'Reviews',
+                ),
+              ],
+            ),
+            const Divider(
+              height: 0,
             ),
             SizedBox(
               height: 367.h,

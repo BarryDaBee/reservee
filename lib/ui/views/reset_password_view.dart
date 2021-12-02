@@ -45,7 +45,7 @@ class ResetPasswordView extends StatelessWidget {
             CustomElevatedButton(
               text: 'Send Reset Code',
               onPressed: () {
-                Navigator.pushNamed(context, CHANGE_PASSWORD_VIEW);
+                Navigator.pushNamed(context, changePasswordView);
               },
             ),
             SizedBox(height: 16.h),
@@ -59,7 +59,7 @@ class ResetPasswordView extends StatelessWidget {
                 InkWell(
                   child: const CustomText('sign up ', color: AppColors.orange),
                   onTap: () {
-                    Navigator.pushNamed(context, SIGN_UP_VIEW);
+                    Navigator.pushNamed(context, signupView);
                   },
                 ),
                 const CustomText(

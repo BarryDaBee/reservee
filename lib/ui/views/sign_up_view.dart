@@ -128,7 +128,7 @@ class SignUpView extends StatelessWidget {
                     'Login',
                     fontSize: 14,
                     onTap: () {
-                      Navigator.pushNamed(context, LOGIN_VIEW);
+                      Navigator.pushNamed(context, loginView);
                     },
                   ),
                 ],

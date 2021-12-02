@@ -64,7 +64,12 @@ class HomeView extends StatelessWidget {
                   ],
                 ),
                 const Spacer(),
-                SvgPicture.asset('notification'.svg),
+                InkWell(
+                  child: SvgPicture.asset('notification'.svg),
+                  onTap: () {
+                    Navigator.pushNamed(context, notificationView);
+                  },
+                ),
               ],
             ),
             SizedBox(height: 12.h),
@@ -105,7 +110,7 @@ class HomeView extends StatelessWidget {
                 const Spacer(),
                 InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, ALL_RESTAURANTS_VIEW,
+                      Navigator.pushNamed(context, allRestaurantView,
                           arguments: {"title": "Popular"});
                     },
                     child: SvgPicture.asset('right_arrow'.svg)),
@@ -137,7 +142,7 @@ class HomeView extends StatelessWidget {
                 const Spacer(),
                 InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, ALL_RESTAURANTS_VIEW,
+                      Navigator.pushNamed(context, allRestaurantView,
                           arguments: {"title": "Close to you"});
                     },
                     child: SvgPicture.asset('right_arrow'.svg)),
@@ -171,7 +176,7 @@ class HomeView extends StatelessWidget {
                   onTap: () {
                     Navigator.pushNamed(
                       context,
-                      ALL_RESTAURANTS_VIEW,
+                      allRestaurantView,
                       arguments: {"title": "All Restaurants"},
                     );
                   },
@@ -181,12 +186,12 @@ class HomeView extends StatelessWidget {
             ),
             Row(
               children: [
-                AllRestaurantsCard(),
+                const AllRestaurantsCard(),
                 SizedBox(width: 15.w),
                 Column(
                   children: [
                     SizedBox(height: 34.h),
-                    AllRestaurantsCard(),
+                    const AllRestaurantsCard(),
                   ],
                 ),
               ],

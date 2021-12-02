@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:reservee_app/core/exports.dart';
+import 'package:reservee_app/core/route_names.dart';
 import 'package:reservee_app/ui/widgets/clickable_text.dart';
 import 'package:reservee_app/ui/widgets/custom_elevated_button.dart';
+import 'package:reservee_app/ui/widgets/custom_password_field_with_label.dart';
 import 'package:reservee_app/ui/widgets/custom_switch.dart';
 import 'package:reservee_app/ui/widgets/custom_textfield_with_label.dart';
-import 'package:reservee_app/ui/widgets/custom_password_field_with_label.dart';
 import 'package:reservee_app/ui/widgets/facebook_button.dart';
-import 'package:reservee_app/core/route_names.dart';
 import 'package:reservee_app/ui/widgets/google_button.dart';
 
 import '../../core/route_names.dart';
@@ -76,7 +76,7 @@ class LoginView extends StatelessWidget {
                     'Forgot Password?',
                     fontSize: 12,
                     onTap: () {
-                      Navigator.pushNamed(context, RESET_PASSWORD_VIEW);
+                      Navigator.pushNamed(context, resetPasswordView);
                     },
                   ),
                 ],
@@ -85,7 +85,7 @@ class LoginView extends StatelessWidget {
               CustomElevatedButton(
                 text: 'Login',
                 onPressed: () {
-                  Navigator.pushNamed(context, BASE_VIEW);
+                  Navigator.pushNamed(context, baseView);
                 },
               ),
               SizedBox(height: 24.h),
@@ -127,7 +127,7 @@ class LoginView extends StatelessWidget {
                     'Sign up',
                     fontSize: 14,
                     onTap: () {
-                      Navigator.pushNamed(context, SIGN_UP_VIEW);
+                      Navigator.pushNamed(context, signupView);
                     },
                   ),
                 ],

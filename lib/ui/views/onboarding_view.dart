@@ -45,14 +45,14 @@ class OnboardingView extends StatelessWidget {
             CustomElevatedButton(
               text: 'Sign Up',
               onPressed: () {
-                Navigator.pushNamed(context, SIGN_UP_VIEW);
+                Navigator.pushNamed(context, signupView);
               },
             ),
             SizedBox(height: 24.h),
             CustomOutlinedButton(
               text: 'Login',
               onPressed: () {
-                Navigator.pushNamed(context, LOGIN_VIEW);
+                Navigator.pushNamed(context, loginView);
               },
             ),
           ],

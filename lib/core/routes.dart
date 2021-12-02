@@ -4,46 +4,55 @@ import 'package:reservee_app/ui/views/base_view.dart';
 import 'package:reservee_app/ui/views/change_password_view.dart';
 import 'package:reservee_app/ui/views/home_view.dart';
 import 'package:reservee_app/ui/views/login_view.dart';
+import 'package:reservee_app/ui/views/notification_view.dart';
 import 'package:reservee_app/ui/views/onboarding_view.dart';
+import 'package:reservee_app/ui/views/reserve_space_view.dart';
 import 'package:reservee_app/ui/views/reset_password_view.dart';
 import 'package:reservee_app/ui/views/restaurant_info_view.dart';
 import 'package:reservee_app/ui/views/sign_up_view.dart';
 import 'package:reservee_app/ui/views/splash_view.dart';
+
 import 'route_names.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
-    case CHANGE_PASSWORD_VIEW:
+    case changePasswordView:
       return MaterialPageRoute(
           builder: (BuildContext context) => const ChangePasswordView());
-    case BASE_VIEW:
+    case baseView:
       return MaterialPageRoute(
           builder: (BuildContext context) => const BaseView());
-    case ALL_RESTAURANTS_VIEW:
+    case allRestaurantView:
       return MaterialPageRoute(
           settings: settings,
           builder: (BuildContext context) => const AllRestaurantsView());
-    case LOGIN_VIEW:
+    case loginView:
       return MaterialPageRoute(
           builder: (BuildContext context) => const LoginView());
-    case RESTAURANT_INFO_VIEW:
+    case restaurantInfoView:
       return MaterialPageRoute(
           builder: (BuildContext context) => const RestaurantInfoView());
-    case ONBOARDING_VIEW:
+    case onboardingView:
       return MaterialPageRoute(
           builder: (BuildContext context) => const OnboardingView());
-    case RESET_PASSWORD_VIEW:
+    case resetPasswordView:
       return MaterialPageRoute(
           builder: (BuildContext context) => const ResetPasswordView());
-    case SIGN_UP_VIEW:
+    case signupView:
       return MaterialPageRoute(
           builder: (BuildContext context) => const SignUpView());
-    case SPLASH_VIEW:
+    case splashView:
       return MaterialPageRoute(
           builder: (BuildContext context) => const SplashView());
-    case HOME_VIEW:
+    case homeView:
       return MaterialPageRoute(
           builder: (BuildContext context) => const HomeView());
+    case notificationView:
+      return MaterialPageRoute(
+          builder: (BuildContext context) => const NotificationView());
+    case reserveSpaceView:
+      return MaterialPageRoute(
+          builder: (BuildContext context) => const ReserveSpaceView());
     default:
       return MaterialPageRoute(builder: (BuildContext context) => Container());
   }

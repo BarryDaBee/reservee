@@ -19,7 +19,7 @@ class Reservee extends StatelessWidget {
           scaffoldBackgroundColor: Colors.white,
         ),
         onGenerateRoute: onGenerateRoute,
-        initialRoute: SPLASH_VIEW,
+        initialRoute: splashView,
       ),
     );
   }
